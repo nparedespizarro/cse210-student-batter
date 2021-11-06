@@ -32,7 +32,6 @@ root                    (project root folder)
 
 ## Authors
 --
-* # TODO: Add your names and emails here
 
 * Nicolas Paredes: par21035@byui.edu
 * Helama Barbour: Helamashi@gmail.com
