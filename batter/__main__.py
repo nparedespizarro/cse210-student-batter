@@ -9,6 +9,7 @@ from game.handle_collisions_action import HandleCollisionsAction
 from game.move_actors_action import MoveActorsAction
 from game.input_service import InputService
 from game.output_service import OutputService
+from game.play import Play
 from asciimatics.screen import Screen 
 
 def main(screen):
@@ -43,6 +44,12 @@ def main(screen):
     ball.set_velocity(velocity)
     cast["ball"] = [ball]
     
+    play = Play()
+    message = Actor()
+    message.set_text(play.get_message())
+    message.set_position(position)
+    lose = {"message" : [message]}
+    
     # create the script {key: tag, value: list}
     script = {}
 
@@ -56,9 +63,11 @@ def main(screen):
     script["input"] = [control_actors_action]
     script["update"] = [move_actors_action, handle_collisions_acition]
     script["output"] = [draw_actors_action]
+    script["print"] = [draw_actors_action]
+
 
     # start the game
-    director = Director(cast, script)
+    director = Director(cast, script, play, lose)
     director.start_game()
 
 Screen.wrapper(main)

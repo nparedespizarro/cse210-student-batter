@@ -2,7 +2,7 @@ class Play:
 
     def __init__(self):
         self._keep_playing = True
-        self._message = "You are terrible"
+        self._message ="YOU LOSE"
 
     def stop_play(self):
         self._keep_playing = False
