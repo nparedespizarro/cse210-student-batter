@@ -9,6 +9,7 @@ class Play:
         _message: An string."""
 
     def __init__(self):
+         """The constructor function."""
         self._keep_playing = True
         self._message ="YOU LOSE"
 
