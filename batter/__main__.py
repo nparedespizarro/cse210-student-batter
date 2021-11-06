@@ -10,6 +10,7 @@ from game.move_actors_action import MoveActorsAction
 from game.input_service import InputService
 from game.output_service import OutputService
 from asciimatics.screen import Screen
+from game.score import Score
 
 
 def main(screen):
@@ -34,6 +35,9 @@ def main(screen):
             brick.set_position(position)
             cast["brick"].append(brick)
 
+    points = len(cast["brick"])
+    Score(points)
+
     x = int(constants.MAX_X / 2)
     y = int(constants.MAX_Y / 2)
     position = Point(x, y)
@@ -48,10 +52,11 @@ def main(screen):
     script = {}
 
     input_service = InputService(screen)
-    output_service = OutputService(screen)
+    output_service = OutputService(screen, points)
     control_actors_action = ControlActorsAction(input_service)
     move_actors_action = MoveActorsAction()
-    handle_collisions_acition = HandleCollisionsAction(cast, script)
+    handle_collisions_acition = HandleCollisionsAction(
+        cast, script, points, screen)
     draw_actors_action = DrawActorsAction(output_service)
 
     script["input"] = [control_actors_action]

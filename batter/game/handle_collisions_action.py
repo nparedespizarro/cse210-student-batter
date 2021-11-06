@@ -3,6 +3,8 @@ import sys
 from game import constants
 from game.action import Action
 from game.director import Director
+from game.output_service import OutputService
+from game.score import Score
 
 
 class HandleCollisionsAction(Action):
@@ -12,8 +14,10 @@ class HandleCollisionsAction(Action):
         Controller
     """
 
-    def __init__(self, cast, script):
+    def __init__(self, cast, script, points, screen):
         self.director = Director(cast, script)
+        self.score = Score(points)
+        self.output = OutputService(screen, self.score._point)
 
     def execute(self, cast):
         """Executes the action using the given actors.
@@ -30,6 +34,8 @@ class HandleCollisionsAction(Action):
                 if ball.get_position().equals(
                         brick.get_position()) and brick.get_text() == "*":
                     brick.set_text("")
+                    self.score._point -= 1
+                    self.output._points = self.score._point
                     ball.set_velocity(ball.get_velocity().change_y_direction())
 
             paddle_x = paddle.get_position().get_x()
