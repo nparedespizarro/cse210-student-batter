@@ -9,7 +9,7 @@ class HandleCollisionsAction(Action):
         Controller
     """
 
-    def execute(self, cast):
+    def execute(self, cast, play):
         """Executes the action using the given actors.
 
         Args:
@@ -31,7 +31,8 @@ class HandleCollisionsAction(Action):
             ball.set_velocity(ball.get_velocity().change_y_direction()) 
 
         if ball.get_position().get_y() == constants.MAX_Y - 1 and not ball_x in paddle_pos_range:
-            ball.set_velocity(ball.get_velocity().change_y_direction1()) 
+            #ball.set_velocity(ball.get_velocity().change_y_direction1()) 
+            play.stop_play()
 
 
 
