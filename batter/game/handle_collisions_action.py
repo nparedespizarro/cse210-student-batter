@@ -7,10 +7,11 @@ from game.director import Director
 
 class HandleCollisionsAction(Action):
     """A code template for handling collisions. The responsibility of this class of objects is to update the game state when actors collide.
-    
+
     Stereotype:
         Controller
     """
+
     def __init__(self, cast, script):
         self.director = Director(cast, script)
 
